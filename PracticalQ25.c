@@ -1,41 +1,39 @@
-//C Program to Find Transpose of a Matrix
+//C Program to Multiply two Matrices by Passing Matrix to a Function
 #include<stdio.h>
-void transposeMatrix(int rows, int cols, int Matrix[rows][cols], int transpose[cols][rows])
+void MultiplyMatrices(int matrix1[2][2], int matrix2[2][2], int result[2][2])
 {
-    for(int i=0; i<rows; i++)
+    for(int i=0; i<2; i++)
     {
-        for(int j=0; j<cols; j++)
+        for(int j=0; j<2; j++)
         {
-            transpose[j][i]=Matrix[i][j];
+            result[i][j]=0;
+            for(int k=0; k<2; k++)
+            {
+                result[i][j]+=matrix1[i][k]*matrix2[k][j];
+            }
         }
     }
 }
 int main()
 {
-    int rows, cols;
-    printf("enter the number of rows: ");
-    scanf("%d", &rows);
-    printf("enter the number of cols: ");
-    scanf("%d", &cols);
-    int Matrix[rows][cols];
-    int transpose[cols][rows];
-    printf("enter the elements of the matrix: \n");
-    for(int i=0; i<rows; i++)
-    {
-        for (int j=0; j<cols; j++)
-        {
-            scanf("%d", &Matrix[i][j]);
-        }
-    }
-    transposeMatrix(rows, cols, Matrix, transpose);
-    printf("transpose of the matrix:\n");
-    for(int i=0; i<cols; i++)
-    {
-        for(int j=0; j<rows; j++)
-        {
-            printf("%d", transpose[i][j]);
-        }
-        printf("\n");
+    int matrix1[2][2], matrix2[2][2], result[2][2];
+    printf("enter the elements of first matrix2*2:\n");
+    for(int i=0; i<2; i++)
+       for(int j=0; j<2; j++)
+           scanf("%d", &matrix1[i][j]);
+      
+    printf("enter the elements of second matrix2*2:\n");
+    for(int i=0; i<2; i++)
+       for(int j=0; j<2; j++)
+           scanf("%d", &matrix2[i][j]);
+
+      MultiplyMatrices(matrix1, matrix2, result);
+     printf("resultant matrix:\n");
+    for(int i=0; i<2; i++){
+       for(int j=0; j<2; j++){
+           printf("%d ", result[i][j]);
+       }
+       printf("\n");
     }
     return 0;
 }
